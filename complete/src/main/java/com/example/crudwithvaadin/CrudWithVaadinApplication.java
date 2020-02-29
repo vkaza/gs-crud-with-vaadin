@@ -1,8 +1,9 @@
 package com.example.crudwithvaadin;
 
+import java.util.Collections;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +15,12 @@ public class CrudWithVaadinApplication {
 	private static final Logger log = LoggerFactory.getLogger(CrudWithVaadinApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(CrudWithVaadinApplication.class);
-	}
-
+        SpringApplication app = new SpringApplication(CrudWithVaadinApplication.class);
+        app.setDefaultProperties(Collections
+          .singletonMap("server.port", "9000"));
+        app.run(args);
+    }
+	
 	@Bean
 	public CommandLineRunner loadData(CustomerRepository repository) {
 		return (args) -> {
